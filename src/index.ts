@@ -61,12 +61,6 @@ program
     }
   });
 
-interface ProgramOptions {
-  dryRun?: boolean;
-}
-
-const options = program.opts() as ProgramOptions;
-
 function getStagedDiff(): string {
   try {
     const diff = execSync("git diff --cached").toString();
@@ -156,8 +150,10 @@ async function selectCommitMessage(messages: string[]): Promise<string> {
       choices: messages,
     },
   ]);
-
-  return selectedMessage;
+  let [typeWithScope, subject] = selectedMessage.split(":");
+  subject = subject.trim();
+  subject = subject[0].toLowerCase() + subject.slice(1);
+  return `${typeWithScope}: ${subject}`;
 }
 
 function commitChanges(message: string): void {
@@ -191,11 +187,7 @@ async function main(): Promise<void> {
   console.log(chalk.green("Selected commit message:"));
   console.log(chalk.blue(selectedMessage));
 
-  if (!options.dryRun) {
-    commitChanges(selectedMessage);
-  } else {
-    console.log(chalk.yellow("Dry run mode: Commit message was not applied."));
-  }
+  commitChanges(selectedMessage);
 }
 
 program.command("commit").action(main);
