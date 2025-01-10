@@ -1,0 +1,31 @@
+{
+  "name": "cai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanweiwei/cai.git"
+  },
+  "author": "kanweiwei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kanweiwei/cai/issues"
+  },
+  "homepage": "https://github.com/kanweiwei/cai#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^13.0.0",
+    "dotenv": "^16.4.7",
+    "inquirer": "^12.3.0",
+    "openai": "^4.78.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
